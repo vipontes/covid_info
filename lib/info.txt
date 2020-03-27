@@ -1,0 +1,2 @@
+## Comando para gerar os arquivos do MOOR:
+flutter packages pub run build_runner build

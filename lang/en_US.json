@@ -1,0 +1,6 @@
+{
+  "api_error": "Error getting data from server",
+  "app_title": "CovidInfo",
+  "404": "Something went wrong...",
+  "404_title": "404 - Not found"
+}

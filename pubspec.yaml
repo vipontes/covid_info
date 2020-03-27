@@ -1,0 +1,62 @@
+name: covidinfo
+description: Information about COVID19
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  cupertino_icons: ^0.1.2
+  intl: ^0.16.0
+  analyzer: ^0.38.5
+  analyzer_plugin: ^0.2.1
+  json_serializable: ^3.2.3
+  path_provider: ^1.5.1
+  connectivity: ^0.4.6+2
+  dio: ^3.0.8
+  equatable: ^0.4.0
+  dartz: ^0.8.6
+  shared_preferences: ^0.5.6
+  rxdart: ^0.23.1
+  bloc_pattern: ^2.5.1
+  toast: ^0.1.5
+  flux_validator_dart: ^1.0.3
+  moor_flutter: ^2.0.0
+  google_maps_flutter: ^0.5.21+15
+  location: ^2.3.5
+  geolocator: ^5.2.0
+  permission: ^0.1.5
+  vibration: ^1.2.2
+  expandable: ^3.0.1
+  url_launcher: ^5.4.1
+  provider: ^3.0.0+1
+  font_awesome_flutter: ^8.2.0
+  flutter_flip_view: ^1.0.3
+  flutter_cache_manager: ^1.1.3
+  cached_network_image: ^2.0.0
+
+  flutter:
+    sdk: flutter
+
+  flutter_localizations:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  mockito: ^4.1.1
+  moor_generator: ^2.2.0
+  build_runner:
+  test: ^1.9.4
+
+
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - lang/pt_BR.json
+    - lang/en_US.json
+    - assets/img/

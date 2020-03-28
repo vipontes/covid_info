@@ -1,5 +1,6 @@
 import 'package:covidinfo/model/worldometer_model.dart';
 import 'package:covidinfo/res/app_colors.dart';
+import 'package:covidinfo/res/app_textstyles.dart';
 import 'package:flutter/material.dart';
 
 class CountryCard extends StatefulWidget {
@@ -23,12 +24,15 @@ class _CountryCardState extends State<CountryCard> {
         child: Stack(
           children: <Widget>[
             Container(
-              padding: EdgeInsets.all(6),
+              margin: EdgeInsets.all(4),
+              padding: EdgeInsets.all(8),
               decoration: BoxDecoration(
                 color: AppColors.white,
                 borderRadius: BorderRadius.only(
-                  bottomRight: Radius.circular(16.0),
-                  topRight: Radius.circular(16.0),
+                  bottomLeft: Radius.circular(8.0),
+                  topLeft: Radius.circular(8.0),
+                  bottomRight: Radius.circular(8.0),
+                  topRight: Radius.circular(8.0),
                 ),
                 boxShadow: [
                   BoxShadow(
@@ -38,8 +42,46 @@ class _CountryCardState extends State<CountryCard> {
                   )
                 ],
               ),
-              child: Center(
-                child: Text(widget.item.country),
+              child: Container(
+                child: Column(
+                  children: <Widget>[
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text(
+                          widget.item.country,
+                          style: AppTextStyles.titleBoldPrimary,
+                        ),
+                        Text(
+                          widget.item.measurementDate,
+                          style: AppTextStyles.descriptionRegularBlack,
+                        )
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text(
+                          "TOTAL: ${widget.item.totalCases}",
+                          style: AppTextStyles.descriptionRegularBlack,
+                        ),
+                        Text(
+                          "DEATHS: ${widget.item.totalDeaths}",
+                          style: AppTextStyles.descriptionRegularBlack,
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text(
+                          "RECOVERED: ${widget.item.totalRecovered}",
+                          style: AppTextStyles.descriptionRegularBlack,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ],

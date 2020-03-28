@@ -6,7 +6,7 @@
 - (BOOL)application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   [GeneratedPluginRegistrant registerWithRegistry:self];
-  // Override point for customization after application launch.
+  [GMSServices provideAPIKey: @"AIzaSyCJqJKYtyWyFLswLaM7qTdmT3R30xbXId4"];
   return [super application:application didFinishLaunchingWithOptions:launchOptions];
 }
 

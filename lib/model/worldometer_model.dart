@@ -27,18 +27,18 @@ class Worldometer {
       this.deathsPerMillion});
 
   Worldometer.fromJson(Map<String, dynamic> json) {
-    worldometersId = json['worldometers_id'];
+    worldometersId = int.parse(json['worldometers_id']);
     measurementDate = json['measurement_date'];
     country = json['country'];
-    totalCases = json['total_cases'];
-    newCases = json['new_cases'];
-    totalDeaths = json['total_deaths'];
-    newDeaths = json['new_deaths'];
-    totalRecovered = json['total_recovered'];
-    activeCases = json['active_cases'];
-    seriousCases = json['serious_cases'];
-    casesPerMillion = json['cases_per_million'];
-    deathsPerMillion = json['deaths_per_million'];
+    totalCases = int.parse(json['total_cases']);
+    newCases = int.parse(json['new_cases']);
+    totalDeaths = int.parse(json['total_deaths']);
+    newDeaths = int.parse(json['new_deaths']);
+    totalRecovered = int.parse(json['total_recovered']);
+    activeCases = int.parse(json['active_cases']);
+    seriousCases = int.parse(json['serious_cases']);
+    casesPerMillion = double.parse(json['cases_per_million']);
+    deathsPerMillion = double.parse(json['deaths_per_million']);
   }
 
   Map<String, dynamic> toJson() {
@@ -63,18 +63,18 @@ class Worldometer {
 
     for (final item in json) {
       Worldometer cidade = Worldometer(
-          worldometersId: item["worldometers_id"],
+          worldometersId: int.parse(item["worldometers_id"]),
           measurementDate: item["measurement_date"],
           country: item["country"],
-          totalCases: item["total_cases"],
-          newCases: item["new_cases"],
-          totalDeaths: item["total_deaths"],
-          newDeaths: item["new_deaths"],
-          totalRecovered: item["total_recovered"],
-          activeCases: item["active_cases"],
-          seriousCases: item["serious_cases"],
-          casesPerMillion: item["cases_per_million"],
-          deathsPerMillion: item["deaths_per_million"]);
+          totalCases: int.parse(item["total_cases"]),
+          newCases: int.parse(item["new_cases"]),
+          totalDeaths: int.parse(item["total_deaths"]),
+          newDeaths: int.parse(item["new_deaths"]),
+          totalRecovered: int.parse(item["total_recovered"]),
+          activeCases: int.parse(item["active_cases"]),
+          seriousCases: int.parse(item["serious_cases"]),
+          casesPerMillion: double.parse(item["cases_per_million"]),
+          deathsPerMillion: double.parse(item["deaths_per_million"]));
 
       data.add(cidade);
     }

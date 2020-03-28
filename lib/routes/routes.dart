@@ -1,6 +1,6 @@
-import 'package:covidinfo/view/chart_page.dart';
-import 'package:covidinfo/view/detail_page.dart';
-import 'package:covidinfo/view/home_page.dart';
+import 'package:covidinfo/view/chart/chart_page.dart';
+import 'package:covidinfo/view/detail/detail_page.dart';
+import 'package:covidinfo/view/home/home_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

@@ -6,7 +6,7 @@ import 'package:dio/dio.dart';
 class AppInterceptors extends Interceptor {
   @override
   Future onRequest(RequestOptions options) async {
-    options.headers.addAll({"apiKey": Constants.apiKey});
+    options.headers.addAll({"token": Constants.apiKey});
     return super.onRequest(options);
   }
 

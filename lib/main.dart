@@ -17,6 +17,7 @@ class CovidInfoApp extends StatelessWidget {
         Provider(builder: (context) => AppDatabase()),
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'CovidInfo',
         theme: ThemeData(
           primarySwatch: Colors.blue,

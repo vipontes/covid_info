@@ -5,4 +5,8 @@ class DateHelper {
     DateTime dateTime = DateTime.now();
     return DateFormat("yyyy-MM-dd").format(dateTime);
   }
+
+  static String dateAsString(DateTime dateTime) {
+    return DateFormat("yyyy-MM-dd").format(dateTime);
+  }
 }

@@ -15,6 +15,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   HomeBloc _bloc = HomeBloc();
+  DateTime _date = DateTime.now();
 
   @override
   void initState() {
@@ -24,12 +25,31 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 
+  Future<Null> selectDate(BuildContext context) async {
+    final DateTime picked = await showDatePicker(
+      context: context,
+      initialDate: _date,
+      firstDate: DateTime(2020),
+      lastDate: DateTime(2025),
+    );
+
+    if (picked != null && picked != _date) {
+      _bloc.getInfo(DateHelper.dateAsString(picked));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.primary,
         title: Text(AppLocalizations.of(context).translate('app_title')),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.calendar_today),
+            onPressed: () => selectDate(context),
+          ),
+        ],
       ),
       body: StreamBuilder<List<Worldometer>>(
         stream: _bloc.data,

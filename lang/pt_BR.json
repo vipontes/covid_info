@@ -16,5 +16,6 @@
   "internet_connection_error": "Verifique sua conexão de internet",
   "no_data": "Não temos registros para a data informada",
   "chartButton": "Estatísticas",
-  "under_construction": "Em construção"
+  "under_construction": "Em construção",
+  "news": "Notícias"
 }

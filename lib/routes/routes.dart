@@ -2,6 +2,7 @@ import 'package:covidinfo/model/worldometer_model.dart';
 import 'package:covidinfo/view/chart/chart_page.dart';
 import 'package:covidinfo/view/detail/detail_page.dart';
 import 'package:covidinfo/view/home/home_page.dart';
+import 'package:covidinfo/view/news/news_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +10,7 @@ class Routes {
   static const String home = '/home';
   static const String detail = '/detail';
   static const String chart = '/chart';
+  static const String news = '/news';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     final args = settings.arguments;
@@ -26,6 +28,8 @@ class Routes {
           return CupertinoPageRoute(builder: (context) => ChartPage(countryData: args));
         }
         return _errorRoute();
+      case news:
+        return CupertinoPageRoute(builder: (context) => NewsPage());
     }
   }
 

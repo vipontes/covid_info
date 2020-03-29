@@ -412,3 +412,5 @@ fabric.properties
 apkbuilder.sh
 covidinfo.jks
 /android/key.properties
+/android/app/src/main/AndroidManifest.xml
+/lib/util/constants.dart

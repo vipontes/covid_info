@@ -16,5 +16,6 @@
   "internet_connection_error": "Check your internet connection",
   "no_data": "We don't have data for the selected date. Sorry!",
   "chartButton": "Statistics",
-  "under_construction": "Under construction"
+  "under_construction": "Under construction",
+  "news": "News"
 }

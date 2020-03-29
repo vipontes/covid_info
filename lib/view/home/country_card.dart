@@ -7,8 +7,8 @@ import 'package:covidinfo/util/localizations.dart';
 import 'package:flutter/material.dart';
 
 class CountryCard extends StatefulWidget {
-  final Worldometer item;
-  CountryCard(this.item);
+  final Worldometer countryData;
+  CountryCard(this.countryData);
 
   @override
   _CountryCardState createState() => _CountryCardState();
@@ -52,11 +52,11 @@ class _CountryCardState extends State<CountryCard> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Text(
-                          widget.item.country,
+                          widget.countryData.country,
                           style: AppTextStyles.titleBoldPrimary,
                         ),
                         Text(
-                          widget.item.measurementDate,
+                          widget.countryData.measurementDate,
                           style: AppTextStyles.descriptionRegularBlack,
                         )
                       ],
@@ -65,11 +65,11 @@ class _CountryCardState extends State<CountryCard> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Text(
-                          "${AppLocalizations.of(context).translate('total')}: ${widget.item.totalCases}",
+                          "${AppLocalizations.of(context).translate('total')}: ${widget.countryData.totalCases}",
                           style: AppTextStyles.descriptionRegularBlack,
                         ),
                         Text(
-                          "${AppLocalizations.of(context).translate('deaths')}: ${widget.item.totalDeaths}",
+                          "${AppLocalizations.of(context).translate('deaths')}: ${widget.countryData.totalDeaths}",
                           style: AppTextStyles.descriptionRegularBlack,
                         ),
                       ],
@@ -78,7 +78,7 @@ class _CountryCardState extends State<CountryCard> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Text(
-                          "${AppLocalizations.of(context).translate('recovered')}: ${widget.item.totalRecovered}",
+                          "${AppLocalizations.of(context).translate('recovered')}: ${widget.countryData.totalRecovered}",
                           style: AppTextStyles.descriptionRegularBlack,
                         ),
                       ],
@@ -90,7 +90,7 @@ class _CountryCardState extends State<CountryCard> {
           ],
         ),
         onTap: () {
-          Routes.push(context, Routes.detail);
+          Routes.push(context, Routes.detail, data: widget.countryData);
         },
       ),
     );

@@ -1,3 +1,4 @@
+import 'package:covidinfo/model/worldometer_model.dart';
 import 'package:covidinfo/view/chart/chart_page.dart';
 import 'package:covidinfo/view/detail/detail_page.dart';
 import 'package:covidinfo/view/home/home_page.dart';
@@ -16,7 +17,10 @@ class Routes {
       case home:
         return CupertinoPageRoute(builder: (context) => HomePage());
       case detail:
-        return CupertinoPageRoute(builder: (context) => DetailPage());
+        if (args is Worldometer) {
+          return CupertinoPageRoute(builder: (context) => DetailPage(countryData: args));
+        }
+        return _errorRoute();
       case chart:
         return CupertinoPageRoute(builder: (context) => ChartPage());
     }
@@ -45,11 +49,9 @@ class Routes {
     );
   }
 
-  static void pushRemoveStack(BuildContext context, String route,
-      {Object data}) {
-    Navigator.of(context).pushNamedAndRemoveUntil(
-        _createRouteSettings(route).name, (Route<dynamic> route) => false,
-        arguments: data);
+  static void pushRemoveStack(BuildContext context, String route, {Object data}) {
+    Navigator.of(context)
+        .pushNamedAndRemoveUntil(_createRouteSettings(route).name, (Route<dynamic> route) => false, arguments: data);
   }
 
   static void replace(BuildContext context, String route) {

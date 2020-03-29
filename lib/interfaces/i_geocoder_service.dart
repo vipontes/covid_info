@@ -5,5 +5,5 @@ import 'package:dartz/dartz.dart';
 import 'package:geocoder/geocoder.dart';
 
 abstract class IGeocoderService {
-  Future<Either<ErrorHandler, List<Address>>> getCountryInfo(String countryName);
+  Future<Either<ErrorHandler, Coordinates>> getCountryCoordinates(String countryName);
 }

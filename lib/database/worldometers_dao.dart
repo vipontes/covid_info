@@ -1,3 +1,4 @@
+import 'package:covidinfo/database/country_coordinates_dao.dart';
 import 'package:moor_flutter/moor_flutter.dart';
 
 import 'moor_database.dart';

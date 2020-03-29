@@ -78,68 +78,50 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      body: StreamBuilder<ViewState>(
-        stream: _bloc.viewState,
-        initialData: ViewState.loading,
-        builder: (context, snapshot) {
-          if (snapshot.data == ViewState.loading) {
-            return Container(
-              child: Center(
-                child: CircularProgressIndicator(
-                  valueColor: new AlwaysStoppedAnimation<Color>(AppColors.primary),
+      body: SafeArea(
+        child: StreamBuilder<ViewState>(
+          stream: _bloc.viewState,
+          initialData: ViewState.loading,
+          builder: (context, snapshot) {
+            if (snapshot.data == ViewState.loading) {
+              return Container(
+                child: Center(
+                  child: CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(AppColors.primary),
+                  ),
                 ),
-              ),
-            );
-          } else if (snapshot.data == ViewState.loadingError) {
-            return GestureDetector(
-              onTap: () => _refreshLocalData(),
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Image.asset(
-                      "assets/img/coronavirus_1.png",
-                      fit: BoxFit.fill,
-                      width: 200,
-                      height: 200,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 20.0),
-                      child: Text(
-                        AppLocalizations.of(context).translate("internet_connection_error"),
-                        style: AppTextStyles.titleBoldGray,
+              );
+            } else if (snapshot.data == ViewState.loadingError) {
+              return GestureDetector(
+                onTap: () => _refreshLocalData(),
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Image.asset(
+                        "assets/img/coronavirus_1.png",
+                        fit: BoxFit.fill,
+                        width: 200,
+                        height: 200,
                       ),
-                    ),
-                  ],
+                      Padding(
+                        padding: const EdgeInsets.only(top: 20.0),
+                        child: Text(
+                          AppLocalizations.of(context).translate("internet_connection_error"),
+                          style: AppTextStyles.titleBoldGray,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            );
-          } else {
-            return StreamBuilder<List<Worldometer>>(
-              stream: _bloc.data,
-              builder: (context, snapshot) {
-                var data = snapshot.data;
-                if (data == null) {
-                  return GestureDetector(
-                    onTap: () => _refreshLocalData(),
-                    child: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          Image.asset(
-                            "assets/img/coronavirus_8.png",
-                            fit: BoxFit.fill,
-                            width: 200,
-                            height: 200,
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                } else {
-                  if (data.length == 0) {
+              );
+            } else {
+              return StreamBuilder<List<Worldometer>>(
+                stream: _bloc.data,
+                builder: (context, snapshot) {
+                  var data = snapshot.data;
+                  if (data == null) {
                     return GestureDetector(
                       onTap: () => _refreshLocalData(),
                       child: Center(
@@ -148,36 +130,56 @@ class _HomePageState extends State<HomePage> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
                             Image.asset(
-                              "assets/img/coronavirus_2.png",
+                              "assets/img/coronavirus_8.png",
                               fit: BoxFit.fill,
                               width: 200,
                               height: 200,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 20.0),
-                              child: Text(
-                                AppLocalizations.of(context).translate("no_data"),
-                                style: AppTextStyles.titleBoldGray,
-                              ),
                             ),
                           ],
                         ),
                       ),
                     );
                   } else {
-                    return RefreshIndicator(
-                      child: ListView.builder(
-                        itemCount: data.length,
-                        itemBuilder: (BuildContext context, int index) => CountryCard(data[index]),
-                      ),
-                      onRefresh: _refreshLocalData,
-                    );
+                    if (data.length == 0) {
+                      return GestureDetector(
+                        onTap: () => _refreshLocalData(),
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              Image.asset(
+                                "assets/img/coronavirus_2.png",
+                                fit: BoxFit.fill,
+                                width: 200,
+                                height: 200,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 20.0),
+                                child: Text(
+                                  AppLocalizations.of(context).translate("no_data"),
+                                  style: AppTextStyles.titleBoldGray,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    } else {
+                      return RefreshIndicator(
+                        child: ListView.builder(
+                          itemCount: data.length,
+                          itemBuilder: (BuildContext context, int index) => CountryCard(data[index]),
+                        ),
+                        onRefresh: _refreshLocalData,
+                      );
+                    }
                   }
-                }
-              },
-            );
-          }
-        },
+                },
+              );
+            }
+          },
+        ),
       ),
     );
   }

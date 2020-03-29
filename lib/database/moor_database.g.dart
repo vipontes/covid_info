@@ -660,16 +660,243 @@ class $WorldometersLocalsTable extends WorldometersLocals
   }
 }
 
+class CountryCoordinatesLocal extends DataClass
+    implements Insertable<CountryCoordinatesLocal> {
+  final String country;
+  final double latitude;
+  final double longitude;
+  CountryCoordinatesLocal(
+      {@required this.country,
+      @required this.latitude,
+      @required this.longitude});
+  factory CountryCoordinatesLocal.fromData(
+      Map<String, dynamic> data, GeneratedDatabase db,
+      {String prefix}) {
+    final effectivePrefix = prefix ?? '';
+    final stringType = db.typeSystem.forDartType<String>();
+    final doubleType = db.typeSystem.forDartType<double>();
+    return CountryCoordinatesLocal(
+      country:
+          stringType.mapFromDatabaseResponse(data['${effectivePrefix}country']),
+      latitude: doubleType
+          .mapFromDatabaseResponse(data['${effectivePrefix}latitude']),
+      longitude: doubleType
+          .mapFromDatabaseResponse(data['${effectivePrefix}longitude']),
+    );
+  }
+  factory CountryCoordinatesLocal.fromJson(Map<String, dynamic> json,
+      {ValueSerializer serializer}) {
+    serializer ??= moorRuntimeOptions.defaultSerializer;
+    return CountryCoordinatesLocal(
+      country: serializer.fromJson<String>(json['country']),
+      latitude: serializer.fromJson<double>(json['latitude']),
+      longitude: serializer.fromJson<double>(json['longitude']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer serializer}) {
+    serializer ??= moorRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'country': serializer.toJson<String>(country),
+      'latitude': serializer.toJson<double>(latitude),
+      'longitude': serializer.toJson<double>(longitude),
+    };
+  }
+
+  @override
+  CountryCoordinatesLocalsCompanion createCompanion(bool nullToAbsent) {
+    return CountryCoordinatesLocalsCompanion(
+      country: country == null && nullToAbsent
+          ? const Value.absent()
+          : Value(country),
+      latitude: latitude == null && nullToAbsent
+          ? const Value.absent()
+          : Value(latitude),
+      longitude: longitude == null && nullToAbsent
+          ? const Value.absent()
+          : Value(longitude),
+    );
+  }
+
+  CountryCoordinatesLocal copyWith(
+          {String country, double latitude, double longitude}) =>
+      CountryCoordinatesLocal(
+        country: country ?? this.country,
+        latitude: latitude ?? this.latitude,
+        longitude: longitude ?? this.longitude,
+      );
+  @override
+  String toString() {
+    return (StringBuffer('CountryCoordinatesLocal(')
+          ..write('country: $country, ')
+          ..write('latitude: $latitude, ')
+          ..write('longitude: $longitude')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => $mrjf(
+      $mrjc(country.hashCode, $mrjc(latitude.hashCode, longitude.hashCode)));
+  @override
+  bool operator ==(dynamic other) =>
+      identical(this, other) ||
+      (other is CountryCoordinatesLocal &&
+          other.country == this.country &&
+          other.latitude == this.latitude &&
+          other.longitude == this.longitude);
+}
+
+class CountryCoordinatesLocalsCompanion
+    extends UpdateCompanion<CountryCoordinatesLocal> {
+  final Value<String> country;
+  final Value<double> latitude;
+  final Value<double> longitude;
+  const CountryCoordinatesLocalsCompanion({
+    this.country = const Value.absent(),
+    this.latitude = const Value.absent(),
+    this.longitude = const Value.absent(),
+  });
+  CountryCoordinatesLocalsCompanion.insert({
+    @required String country,
+    @required double latitude,
+    @required double longitude,
+  })  : country = Value(country),
+        latitude = Value(latitude),
+        longitude = Value(longitude);
+  CountryCoordinatesLocalsCompanion copyWith(
+      {Value<String> country,
+      Value<double> latitude,
+      Value<double> longitude}) {
+    return CountryCoordinatesLocalsCompanion(
+      country: country ?? this.country,
+      latitude: latitude ?? this.latitude,
+      longitude: longitude ?? this.longitude,
+    );
+  }
+}
+
+class $CountryCoordinatesLocalsTable extends CountryCoordinatesLocals
+    with TableInfo<$CountryCoordinatesLocalsTable, CountryCoordinatesLocal> {
+  final GeneratedDatabase _db;
+  final String _alias;
+  $CountryCoordinatesLocalsTable(this._db, [this._alias]);
+  final VerificationMeta _countryMeta = const VerificationMeta('country');
+  GeneratedTextColumn _country;
+  @override
+  GeneratedTextColumn get country => _country ??= _constructCountry();
+  GeneratedTextColumn _constructCountry() {
+    return GeneratedTextColumn(
+      'country',
+      $tableName,
+      false,
+    );
+  }
+
+  final VerificationMeta _latitudeMeta = const VerificationMeta('latitude');
+  GeneratedRealColumn _latitude;
+  @override
+  GeneratedRealColumn get latitude => _latitude ??= _constructLatitude();
+  GeneratedRealColumn _constructLatitude() {
+    return GeneratedRealColumn(
+      'latitude',
+      $tableName,
+      false,
+    );
+  }
+
+  final VerificationMeta _longitudeMeta = const VerificationMeta('longitude');
+  GeneratedRealColumn _longitude;
+  @override
+  GeneratedRealColumn get longitude => _longitude ??= _constructLongitude();
+  GeneratedRealColumn _constructLongitude() {
+    return GeneratedRealColumn(
+      'longitude',
+      $tableName,
+      false,
+    );
+  }
+
+  @override
+  List<GeneratedColumn> get $columns => [country, latitude, longitude];
+  @override
+  $CountryCoordinatesLocalsTable get asDslTable => this;
+  @override
+  String get $tableName => _alias ?? 'country_coordinates_locals';
+  @override
+  final String actualTableName = 'country_coordinates_locals';
+  @override
+  VerificationContext validateIntegrity(CountryCoordinatesLocalsCompanion d,
+      {bool isInserting = false}) {
+    final context = VerificationContext();
+    if (d.country.present) {
+      context.handle(_countryMeta,
+          country.isAcceptableValue(d.country.value, _countryMeta));
+    } else if (isInserting) {
+      context.missing(_countryMeta);
+    }
+    if (d.latitude.present) {
+      context.handle(_latitudeMeta,
+          latitude.isAcceptableValue(d.latitude.value, _latitudeMeta));
+    } else if (isInserting) {
+      context.missing(_latitudeMeta);
+    }
+    if (d.longitude.present) {
+      context.handle(_longitudeMeta,
+          longitude.isAcceptableValue(d.longitude.value, _longitudeMeta));
+    } else if (isInserting) {
+      context.missing(_longitudeMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {country};
+  @override
+  CountryCoordinatesLocal map(Map<String, dynamic> data, {String tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : null;
+    return CountryCoordinatesLocal.fromData(data, _db, prefix: effectivePrefix);
+  }
+
+  @override
+  Map<String, Variable> entityToSql(CountryCoordinatesLocalsCompanion d) {
+    final map = <String, Variable>{};
+    if (d.country.present) {
+      map['country'] = Variable<String, StringType>(d.country.value);
+    }
+    if (d.latitude.present) {
+      map['latitude'] = Variable<double, RealType>(d.latitude.value);
+    }
+    if (d.longitude.present) {
+      map['longitude'] = Variable<double, RealType>(d.longitude.value);
+    }
+    return map;
+  }
+
+  @override
+  $CountryCoordinatesLocalsTable createAlias(String alias) {
+    return $CountryCoordinatesLocalsTable(_db, alias);
+  }
+}
+
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(SqlTypeSystem.defaultInstance, e);
   $WorldometersLocalsTable _worldometersLocals;
   $WorldometersLocalsTable get worldometersLocals =>
       _worldometersLocals ??= $WorldometersLocalsTable(this);
+  $CountryCoordinatesLocalsTable _countryCoordinatesLocals;
+  $CountryCoordinatesLocalsTable get countryCoordinatesLocals =>
+      _countryCoordinatesLocals ??= $CountryCoordinatesLocalsTable(this);
   WorldometersLocalDao _worldometersLocalDao;
   WorldometersLocalDao get worldometersLocalDao =>
       _worldometersLocalDao ??= WorldometersLocalDao(this as AppDatabase);
+  CountryCoordinatesLocalDao _countryCoordinatesLocalDao;
+  CountryCoordinatesLocalDao get countryCoordinatesLocalDao =>
+      _countryCoordinatesLocalDao ??=
+          CountryCoordinatesLocalDao(this as AppDatabase);
   @override
   Iterable<TableInfo> get allTables => allSchemaEntities.whereType<TableInfo>();
   @override
-  List<DatabaseSchemaEntity> get allSchemaEntities => [worldometersLocals];
+  List<DatabaseSchemaEntity> get allSchemaEntities =>
+      [worldometersLocals, countryCoordinatesLocals];
 }

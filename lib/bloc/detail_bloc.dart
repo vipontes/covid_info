@@ -13,13 +13,10 @@ class DetailBloc extends BlocBase {
   Function(Coordinates) get onCoordinatesChanged => _coordinatesController.add;
 
   Future getCountryInfo(String countryName) async {
-    GeocoderService().getCountryInfo(countryName).then((res) {
+    GeocoderService().getCountryCoordinates(countryName).then((res) {
       var decodedResponse = res.fold((error) => error, (val) => val);
-      if (decodedResponse is List<Address>) {
-        var addresses = decodedResponse;
-        if (addresses.length > 0) {
-          _coordinatesController.sink.add(addresses[0].coordinates);
-        }
+      if (decodedResponse is Coordinates) {
+        _coordinatesController.sink.add(decodedResponse);
       }
     });
   }

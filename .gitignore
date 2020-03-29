@@ -408,3 +408,7 @@ fabric.properties
 !/gradle/wrapper/gradle-wrapper.jar
 
 # End of https://www.gitignore.io/api/java,dart,swift,kotlin,android,flutter,androidstudio
+
+apkbuilder.sh
+covidinfo.jks
+/android/key.properties

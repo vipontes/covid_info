@@ -30,25 +30,27 @@ class _ChartPageState extends State<ChartPage> {
         backgroundColor: AppColors.primary,
         title: Text(AppLocalizations.of(context).translate('app_title')),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Image.asset(
-              "assets/img/coronavirus_8.png",
-              fit: BoxFit.fill,
-              width: 200,
-              height: 200,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 20.0),
-              child: Text(
-                AppLocalizations.of(context).translate("under_construction"),
-                style: AppTextStyles.titleBoldGray,
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Image.asset(
+                "assets/img/coronavirus_8.png",
+                fit: BoxFit.fill,
+                width: 200,
+                height: 200,
               ),
-            ),
-          ],
+              Padding(
+                padding: const EdgeInsets.only(top: 20.0),
+                child: Text(
+                  AppLocalizations.of(context).translate("under_construction"),
+                  style: AppTextStyles.titleBoldGray,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -22,7 +22,10 @@ class Routes {
         }
         return _errorRoute();
       case chart:
-        return CupertinoPageRoute(builder: (context) => ChartPage());
+        if (args is Worldometer) {
+          return CupertinoPageRoute(builder: (context) => ChartPage(countryData: args));
+        }
+        return _errorRoute();
     }
   }
 

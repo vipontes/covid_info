@@ -6,7 +6,15 @@
   "total": "Total",
   "deaths": "Mortes",
   "recovered": "Recuperados",
+  "newCases": "Novos casos",
+  "newDeaths": "Novas mortes",
+  "activeCases": "Casos ativos",
+  "seriousCases": "Casos sérios",
+  "casesPerMillion": "Casos por milhão",
+  "deathsPerMillion": "Mortes por milhão",
   "loading_error": "Ocorreu um erro ao tentar buscar os dados. Verifique sua conexão de internet e tente novamente.",
   "internet_connection_error": "Verifique sua conexão de internet",
-  "no_data": "Não temos registros para a data informada"
+  "no_data": "Não temos registros para a data informada",
+  "chartButton": "Estatísticas",
+  "under_construction": "Em construção"
 }

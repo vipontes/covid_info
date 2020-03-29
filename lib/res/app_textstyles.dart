@@ -7,6 +7,20 @@ class FontFamily {
 }
 
 class AppTextStyles {
+  static TextStyle get bigTextPrimary => TextStyle(
+        fontFamily: FontFamily.bold,
+        fontSize: 28,
+        fontWeight: FontWeight.w500,
+        color: AppColors.primary,
+      );
+
+  static TextStyle get detailTextGray => TextStyle(
+        fontFamily: FontFamily.bold,
+        fontSize: 18,
+        fontWeight: FontWeight.w500,
+        color: AppColors.gray,
+      );
+
   static TextStyle get titleBoldPrimary => TextStyle(
         fontFamily: FontFamily.bold,
         fontSize: 16,

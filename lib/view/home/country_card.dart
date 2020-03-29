@@ -1,6 +1,9 @@
 import 'package:covidinfo/model/worldometer_model.dart';
 import 'package:covidinfo/res/app_colors.dart';
+import 'package:covidinfo/res/app_dimens.dart';
 import 'package:covidinfo/res/app_textstyles.dart';
+import 'package:covidinfo/routes/routes.dart';
+import 'package:covidinfo/util/localizations.dart';
 import 'package:flutter/material.dart';
 
 class CountryCard extends StatefulWidget {
@@ -29,10 +32,10 @@ class _CountryCardState extends State<CountryCard> {
               decoration: BoxDecoration(
                 color: AppColors.white,
                 borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(8.0),
-                  topLeft: Radius.circular(8.0),
-                  bottomRight: Radius.circular(8.0),
-                  topRight: Radius.circular(8.0),
+                  bottomLeft: Radius.circular(AppDimens.cardRadius),
+                  topLeft: Radius.circular(AppDimens.cardRadius),
+                  bottomRight: Radius.circular(AppDimens.cardRadius),
+                  topRight: Radius.circular(AppDimens.cardRadius),
                 ),
                 boxShadow: [
                   BoxShadow(
@@ -62,11 +65,11 @@ class _CountryCardState extends State<CountryCard> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Text(
-                          "TOTAL: ${widget.item.totalCases}",
+                          "${AppLocalizations.of(context).translate('total')}: ${widget.item.totalCases}",
                           style: AppTextStyles.descriptionRegularBlack,
                         ),
                         Text(
-                          "DEATHS: ${widget.item.totalDeaths}",
+                          "${AppLocalizations.of(context).translate('deaths')}: ${widget.item.totalDeaths}",
                           style: AppTextStyles.descriptionRegularBlack,
                         ),
                       ],
@@ -75,7 +78,7 @@ class _CountryCardState extends State<CountryCard> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Text(
-                          "RECOVERED: ${widget.item.totalRecovered}",
+                          "${AppLocalizations.of(context).translate('recovered')}: ${widget.item.totalRecovered}",
                           style: AppTextStyles.descriptionRegularBlack,
                         ),
                       ],
@@ -86,7 +89,9 @@ class _CountryCardState extends State<CountryCard> {
             ),
           ],
         ),
-        onTap: () {},
+        onTap: () {
+          Routes.push(context, Routes.detail);
+        },
       ),
     );
   }

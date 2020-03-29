@@ -5,5 +5,5 @@ import 'package:covidinfo/service/error_handler/error_handler.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class IWorldometerService {
-  Future<Either<ErrorHandler, List<Worldometer>>> getInfo(String selectedDate);
+  Future<Either<ErrorHandler, List<Worldometer>>> getInfo(String selectedDate, bool refreshLocalData);
 }

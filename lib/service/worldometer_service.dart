@@ -31,8 +31,7 @@ class WorldometerService implements IWorldometerService {
   /**
    * @brief Implementação do Singleton
    */
-  static final WorldometerService _singleton =
-      new WorldometerService._internal();
+  static final WorldometerService _singleton = new WorldometerService._internal();
 
   factory WorldometerService() {
     return _singleton;
@@ -43,17 +42,20 @@ class WorldometerService implements IWorldometerService {
   }
 
   @override
-  Future<Either<ErrorHandler, List<Worldometer>>> getInfo(
-      String selectedDate) async {
+  Future<Either<ErrorHandler, List<Worldometer>>> getInfo(String selectedDate, bool refreshLocalData) async {
     final database = Provider.of<AppDatabase>(navigatorKey.currentContext);
 
-    final List<WorldometersLocal> localData =
-        await database.worldometersLocalDao.getDataByDate(selectedDate);
+    List<WorldometersLocal> localData = List<WorldometersLocal>();
+
+    if (refreshLocalData) {
+      await database.worldometersLocalDao.cleanSelectedDate(selectedDate);
+    } else {
+      localData = await database.worldometersLocalDao.getDataByDate(selectedDate);
+    }
 
     if (localData.length == 0) {
       try {
-        Response response = await dio
-            .post("/worldometers", data: {"selectedDate": selectedDate});
+        Response response = await dio.post("/worldometers", data: {"selectedDate": selectedDate});
 
         if (response.statusCode == 200) {
           List<Worldometer> data = Worldometer.listFromJson(response.data);
@@ -78,8 +80,7 @@ class WorldometerService implements IWorldometerService {
 
           return Right(data);
         } else {
-          final Map<String, dynamic> decodedMessage =
-              json.decode(response.toString());
+          final Map<String, dynamic> decodedMessage = json.decode(response.toString());
 
           return Left(ErrorHandler(response.statusCode, decodedMessage['msg']));
         }

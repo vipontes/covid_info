@@ -23,18 +23,14 @@ class WorldometersLocals extends Table {
 }
 
 @UseDao(tables: [WorldometersLocals])
-class WorldometersLocalDao extends DatabaseAccessor<AppDatabase>
-    with _$WorldometersLocalDaoMixin {
+class WorldometersLocalDao extends DatabaseAccessor<AppDatabase> with _$WorldometersLocalDaoMixin {
   WorldometersLocalDao(AppDatabase db) : super(db);
 
   Future<List<WorldometersLocal>> getDataByDate(String selectedDate) =>
-      (select(worldometersLocals)
-            ..where((w) => w.measurement_date.equals(selectedDate)))
-          .get();
-  Future insertItem(WorldometersLocal data) =>
-      into(worldometersLocals).insert(data);
-  Future updateItem(WorldometersLocal data) =>
-      update(worldometersLocals).replace(data);
-  Future deleteItem(WorldometersLocal data) =>
-      delete(worldometersLocals).delete(data);
+      (select(worldometersLocals)..where((w) => w.measurement_date.equals(selectedDate))).get();
+  Future insertItem(WorldometersLocal data) => into(worldometersLocals).insert(data);
+  Future updateItem(WorldometersLocal data) => update(worldometersLocals).replace(data);
+  Future deleteItem(WorldometersLocal data) => delete(worldometersLocals).delete(data);
+  Future cleanSelectedDate(String selectedDate) =>
+      (delete(worldometersLocals)..where((w) => w.measurement_date.equals(selectedDate))).go();
 }

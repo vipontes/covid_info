@@ -2,5 +2,11 @@
   "api_error": "Erro ao extrair dados do servidor",
   "app_title": "CovidInfo",
   "404": "Alguma coisa deu errado...",
-  "404_title": "404 - Recurso não encontrado"
+  "404_title": "404 - Recurso não encontrado",
+  "total": "Total",
+  "deaths": "Mortes",
+  "recovered": "Recuperados",
+  "loading_error": "Ocorreu um erro ao tentar buscar os dados. Verifique sua conexão de internet e tente novamente.",
+  "internet_connection_error": "Verifique sua conexão de internet",
+  "no_data": "Não temos registros para a data informada"
 }

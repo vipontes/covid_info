@@ -46,6 +46,33 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 
+  _searchBar() {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: FocusScope(
+          node: FocusScopeNode(),
+          child: TextField(
+            decoration: InputDecoration(
+              hintText: AppLocalizations.of(context).translate('search'),
+              enabledBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: AppColors.primary),
+              ),
+              focusedBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: AppColors.primary),
+              ),
+            ),
+            onChanged: (text) {
+              text = text.toLowerCase();
+              _bloc.onSearchChange(text);
+            },
+          ),
+        ),
+      ),
+    );
+  }
+
   Future<Null> selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
       context: context,
@@ -74,12 +101,28 @@ class _HomePageState extends State<HomePage> {
         title: Text(AppLocalizations.of(context).translate('app_title')),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.calendar_today),
+            icon: Image.asset(
+              'assets/img/calendar.png',
+              width: 24,
+              height: 24,
+            ),
             onPressed: () => selectDate(context),
           ),
           IconButton(
-            icon: Icon(Icons.info_outline),
+            icon: Image.asset(
+              'assets/img/news_outline.png',
+              width: 24,
+              height: 24,
+            ),
             onPressed: () => Routes.push(context, Routes.news),
+          ),
+          IconButton(
+            icon: Image.asset(
+              'assets/img/info.png',
+              width: 24,
+              height: 24,
+            ),
+            onPressed: () => Routes.push(context, Routes.about),
           ),
         ],
       ),
@@ -145,40 +188,28 @@ class _HomePageState extends State<HomePage> {
                       ),
                     );
                   } else {
-                    if (data.length == 0) {
-                      return GestureDetector(
-                        onTap: () => _refreshLocalData(),
-                        child: Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Widget>[
-                              Image.asset(
-                                "assets/img/coronavirus_2.png",
-                                fit: BoxFit.fill,
-                                width: 200,
-                                height: 200,
-                              ),
-                              Padding(
+                    return Column(
+                      children: <Widget>[
+                        _searchBar(),
+                        data.length == 0
+                            ? Padding(
                                 padding: const EdgeInsets.only(top: 20.0),
                                 child: Text(
                                   AppLocalizations.of(context).translate("no_data"),
                                   style: AppTextStyles.titleBoldGray,
                                 ),
+                              )
+                            : Expanded(
+                                child: RefreshIndicator(
+                                  child: ListView.builder(
+                                    itemCount: data.length,
+                                    itemBuilder: (BuildContext context, int index) => CountryCard(data[index]),
+                                  ),
+                                  onRefresh: _refreshLocalData,
+                                ),
                               ),
-                            ],
-                          ),
-                        ),
-                      );
-                    } else {
-                      return RefreshIndicator(
-                        child: ListView.builder(
-                          itemCount: data.length,
-                          itemBuilder: (BuildContext context, int index) => CountryCard(data[index]),
-                        ),
-                        onRefresh: _refreshLocalData,
-                      );
-                    }
+                      ],
+                    );
                   }
                 },
               );

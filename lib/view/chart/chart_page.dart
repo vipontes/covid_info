@@ -1,7 +1,7 @@
+import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:covidinfo/bloc/chart_bloc.dart';
 import 'package:covidinfo/model/worldometer_model.dart';
 import 'package:covidinfo/res/app_colors.dart';
-import 'package:covidinfo/res/app_textstyles.dart';
 import 'package:covidinfo/util/localizations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -25,34 +25,42 @@ class _ChartPageState extends State<ChartPage> {
 
   @override
   Widget build(BuildContext context) {
+    var sampleData = _createSampleData();
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.primary,
         title: Text(AppLocalizations.of(context).translate('app_title')),
       ),
       body: SafeArea(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Image.asset(
-                "assets/img/coronavirus_8.png",
-                fit: BoxFit.fill,
-                width: 200,
-                height: 200,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 20.0),
-                child: Text(
-                  AppLocalizations.of(context).translate("under_construction"),
-                  style: AppTextStyles.titleBoldGray,
-                ),
-              ),
-            ],
-          ),
-        ),
+        child: charts.LineChart(sampleData, animate: true),
       ),
     );
   }
+
+  static List<charts.Series<LinearSales, int>> _createSampleData() {
+    final data = [
+      new LinearSales(0, 5),
+      new LinearSales(1, 25),
+      new LinearSales(2, 100),
+      new LinearSales(3, 75),
+    ];
+
+    return [
+      new charts.Series<LinearSales, int>(
+        id: 'Sales',
+        colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
+        domainFn: (LinearSales sales, _) => sales.year,
+        measureFn: (LinearSales sales, _) => sales.sales,
+        data: data,
+      )
+    ];
+  }
+}
+
+class LinearSales {
+  final int year;
+  final int sales;
+
+  LinearSales(this.year, this.sales);
 }

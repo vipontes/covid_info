@@ -6,6 +6,9 @@ import 'package:covidinfo/util/view_state.dart';
 import 'package:rxdart/rxdart.dart';
 
 class HomeBloc extends BlocBase {
+  List<Worldometer> _countries = List<Worldometer>();
+  List<Worldometer> _countriesForDisplay = List<Worldometer>();
+
   final _viewStateController = BehaviorSubject<ViewState>();
   Stream<ViewState> get viewState => _viewStateController.stream;
 
@@ -22,6 +25,9 @@ class HomeBloc extends BlocBase {
           _worldometerDataController.sink.add(decodedResponse);
           _viewStateController.add(ViewState.loaded);
           _viewStateController.add(ViewState.idle);
+
+          _countries.addAll(decodedResponse);
+          _countriesForDisplay = _countries;
         }
       }).catchError((error) {
         _viewStateController.add(ViewState.loadingError);
@@ -40,6 +46,9 @@ class HomeBloc extends BlocBase {
           _worldometerDataController.sink.add(decodedResponse);
           _viewStateController.add(ViewState.loaded);
           _viewStateController.add(ViewState.idle);
+
+          _countries.addAll(decodedResponse);
+          _countriesForDisplay = _countries;
         }
       }).catchError((error) {
         _viewStateController.add(ViewState.loadingError);
@@ -47,6 +56,15 @@ class HomeBloc extends BlocBase {
     } else {
       _viewStateController.add(ViewState.loadingError);
     }
+  }
+
+  void onSearchChange(String value) {
+    _countriesForDisplay = _countries.where((item) {
+      var name = item.country.toLowerCase();
+      return name.contains(value);
+    }).toList();
+
+    _worldometerDataController.sink.add(_countriesForDisplay);
   }
 
   @override

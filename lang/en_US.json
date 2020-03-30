@@ -14,8 +14,14 @@
   "deathsPerMillion": "Deaths per million",
   "loading_error": "We encoutered some error trying to get data. Check your internet connection and try again.",
   "internet_connection_error": "Check your internet connection",
-  "no_data": "We don't have data for the selected date. Sorry!",
-  "chartButton": "Statistics",
+  "no_data": "Empty list",
+  "chartButton": "Evolution",
   "under_construction": "Under construction",
-  "news": "News"
+  "news": "News",
+  "search": "Search",
+  "about": "About",
+  "about_line1": "This app tries to get updated information about corona vírus.",
+  "about_line2": "The data found here was extracted from the following sources:",
+  "about_numbers": "Numbers",
+  "about_news": "News"
 }

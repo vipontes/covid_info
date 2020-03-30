@@ -14,8 +14,14 @@
   "deathsPerMillion": "Mortes por milhão",
   "loading_error": "Ocorreu um erro ao tentar buscar os dados. Verifique sua conexão de internet e tente novamente.",
   "internet_connection_error": "Verifique sua conexão de internet",
-  "no_data": "Não temos registros para a data informada",
-  "chartButton": "Estatísticas",
+  "no_data": "Lista vazia",
+  "chartButton": "Evolução",
   "under_construction": "Em construção",
-  "news": "Notícias"
+  "news": "Notícias",
+  "search": "Pesquisar",
+  "about": "Sobre",
+  "about_line1": "Este aplicativo busca trazer dados atualizados sobre o corona vírus.",
+  "about_line2": "Os dados aqui disponibilizados foram extraidos das seguintes fontes:",
+  "about_numbers": "Números",
+  "about_news": "Notícias"
 }

@@ -1,4 +1,5 @@
 import 'package:covidinfo/model/worldometer_model.dart';
+import 'package:covidinfo/view/about/about_page.dart';
 import 'package:covidinfo/view/chart/chart_page.dart';
 import 'package:covidinfo/view/detail/detail_page.dart';
 import 'package:covidinfo/view/home/home_page.dart';
@@ -11,6 +12,7 @@ class Routes {
   static const String detail = '/detail';
   static const String chart = '/chart';
   static const String news = '/news';
+  static const String about = '/about';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     final args = settings.arguments;
@@ -30,6 +32,8 @@ class Routes {
         return _errorRoute();
       case news:
         return CupertinoPageRoute(builder: (context) => NewsPage());
+      case about:
+        return CupertinoPageRoute(builder: (context) => AboutPage());
     }
   }
 

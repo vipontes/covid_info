@@ -20,11 +20,11 @@ class CovidInfoApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'CovidInfo',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primarySwatch: Colors.red,
         ),
         supportedLocales: [
-          Locale('pt', 'BR'),
           Locale('en', 'US'),
+          Locale('pt', 'BR'),
         ],
         localizationsDelegates: [
           AppLocalizations.delegate,
@@ -32,8 +32,7 @@ class CovidInfoApp extends StatelessWidget {
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
         ],
-        localeResolutionCallback:
-            (Locale locale, Iterable<Locale> supportedLocales) {
+        localeResolutionCallback: (Locale locale, Iterable<Locale> supportedLocales) {
           if (locale == null) {
             return supportedLocales.first;
           }

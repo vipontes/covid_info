@@ -62,4 +62,11 @@ class AppTextStyles {
         fontWeight: FontWeight.w500,
         color: AppColors.black,
       );
+
+  static TextStyle get link => TextStyle(
+        fontFamily: FontFamily.regular,
+        fontSize: 14,
+        fontWeight: FontWeight.w500,
+        color: AppColors.blue,
+      );
 }

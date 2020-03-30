@@ -1,7 +1,7 @@
 import 'package:covidinfo/model/article_model.dart';
 import 'package:covidinfo/res/app_colors.dart';
+import 'package:covidinfo/util/launch_url_helper.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class NewsCard extends StatefulWidget {
   final Article article;
@@ -17,14 +17,6 @@ class _NewsCardState extends State<NewsCard> {
     super.initState();
   }
 
-  _launchURL(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -35,7 +27,7 @@ class _NewsCardState extends State<NewsCard> {
               child: FadeInImage.assetNetwork(
                 image: widget.article.urlToImage,
                 fit: BoxFit.fitWidth,
-                placeholder: "assets/img/news.png",
+                placeholder: "assets/img/news_cover.png",
               ),
             ),
             Positioned(
@@ -86,7 +78,7 @@ class _NewsCardState extends State<NewsCard> {
             ),
           ],
         ),
-        onTap: () => _launchURL(widget.article.url),
+        onTap: () => LaunchUrlHelper.launchURL(widget.article.url),
       ),
     );
   }

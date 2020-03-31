@@ -1,6 +1,7 @@
 import 'package:covidinfo/model/article_model.dart';
 import 'package:covidinfo/res/app_colors.dart';
 import 'package:covidinfo/res/app_dimens.dart';
+import 'package:covidinfo/util/launch_url_helper.dart';
 import 'package:flutter/material.dart';
 
 class NewsCard extends StatefulWidget {
@@ -39,45 +40,48 @@ class _NewsCardState extends State<NewsCard> {
       ),
       child: Column(
         children: <Widget>[
-          Stack(
-            children: <Widget>[
-              widget.article.urlToImage != null
-                  ? ClipRRect(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(AppDimens.cardRadius),
-                        topRight: Radius.circular(AppDimens.cardRadius),
-                      ),
-                      child: FadeInImage.assetNetwork(
-                        image: widget.article.urlToImage,
+          GestureDetector(
+            onTap: () => LaunchUrlHelper.launchURL(widget.article.url),
+            child: Stack(
+              children: <Widget>[
+                widget.article.urlToImage != null
+                    ? ClipRRect(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(AppDimens.cardRadius),
+                          topRight: Radius.circular(AppDimens.cardRadius),
+                        ),
+                        child: FadeInImage.assetNetwork(
+                          image: widget.article.urlToImage,
+                          fit: BoxFit.fitWidth,
+                          placeholder: "assets/img/news_cover.png",
+                        ),
+                      )
+                    : Image.asset(
+                        "assets/img/news_cover.png",
                         fit: BoxFit.fitWidth,
-                        placeholder: "assets/img/news_cover.png",
                       ),
-                    )
-                  : Image.asset(
-                      "assets/img/news_cover.png",
-                      fit: BoxFit.fitWidth,
+                Positioned(
+                  bottom: 0,
+                  right: 0,
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                      color: AppColors.black.withOpacity(0.45),
                     ),
-              Positioned(
-                bottom: 0,
-                right: 0,
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                    color: AppColors.black.withOpacity(0.45),
-                  ),
-                  child: Align(
-                    alignment: Alignment.bottomRight,
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 4, bottom: 2),
-                      child: Text(
-                        '- ${widget.article.source?.name ?? 'unknown'}',
-                        style: TextStyle(color: AppColors.white, fontSize: 14.0, fontStyle: FontStyle.italic),
+                    child: Align(
+                      alignment: Alignment.bottomRight,
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 4, bottom: 2),
+                        child: Text(
+                          '- ${widget.article.source?.name ?? 'unknown'}',
+                          style: TextStyle(color: AppColors.white, fontSize: 14.0, fontStyle: FontStyle.italic),
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),

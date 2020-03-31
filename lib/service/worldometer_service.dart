@@ -110,4 +110,22 @@ class WorldometerService implements IWorldometerService {
       return Right(data);
     }
   }
+
+  @override
+  Future<Either<ErrorHandler, List<Worldometer>>> getCountryInfo(String countryName) async {
+    try {
+      Response response = await dio.post("/worldometers/country", data: {"country": countryName});
+
+      if (response.statusCode == 200) {
+        List<Worldometer> data = Worldometer.listFromJson(response.data);
+        return Right(data);
+      } else {
+        final Map<String, dynamic> decodedMessage = json.decode(response.toString());
+
+        return Left(ErrorHandler(response.statusCode, decodedMessage['msg']));
+      }
+    } on DioError catch (error) {
+      return Left(ErrorHandler(500, error.message));
+    }
+  }
 }

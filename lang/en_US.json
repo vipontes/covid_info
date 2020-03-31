@@ -23,5 +23,6 @@
   "about_line1": "This app tries to get updated information about corona vírus.",
   "about_line2": "The data found here was extracted from the following sources:",
   "about_numbers": "Numbers",
-  "about_news": "News"
+  "about_news": "News",
+  "poweredBy": "Powered by"
 }

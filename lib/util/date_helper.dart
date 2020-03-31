@@ -9,4 +9,8 @@ class DateHelper {
   static String dateAsString(DateTime dateTime) {
     return DateFormat("yyyy-MM-dd").format(dateTime);
   }
+
+  static int dayFromStringDate(String stringDate) {
+    return DateTime.parse(stringDate).day;
+  }
 }

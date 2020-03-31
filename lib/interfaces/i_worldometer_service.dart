@@ -6,4 +6,5 @@ import 'package:dartz/dartz.dart';
 
 abstract class IWorldometerService {
   Future<Either<ErrorHandler, List<Worldometer>>> getInfo(String selectedDate, bool refreshLocalData);
+  Future<Either<ErrorHandler, List<Worldometer>>> getCountryInfo(String countryName);
 }

@@ -1,10 +1,10 @@
 import 'package:covidinfo/bloc/news_bloc.dart';
+import 'package:covidinfo/enums/view_state.dart';
 import 'package:covidinfo/model/article_model.dart';
 import 'package:covidinfo/model/worldometer_model.dart';
 import 'package:covidinfo/res/app_colors.dart';
 import 'package:covidinfo/res/app_textstyles.dart';
 import 'package:covidinfo/util/localizations.dart';
-import 'package:covidinfo/util/view_state.dart';
 import 'package:covidinfo/view/news/news_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

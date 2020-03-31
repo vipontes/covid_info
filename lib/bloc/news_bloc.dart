@@ -1,9 +1,9 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
+import 'package:covidinfo/enums/view_state.dart';
 import 'package:covidinfo/model/article_model.dart';
 import 'package:covidinfo/model/news_model.dart';
 import 'package:covidinfo/service/news_service.dart';
 import 'package:covidinfo/util/connectivity_helper.dart';
-import 'package:covidinfo/util/view_state.dart';
 import 'package:rxdart/rxdart.dart';
 
 class NewsBloc extends BlocBase {

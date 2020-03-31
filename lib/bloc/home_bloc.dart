@@ -1,8 +1,8 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
+import 'package:covidinfo/enums/view_state.dart';
 import 'package:covidinfo/model/worldometer_model.dart';
 import 'package:covidinfo/service/worldometer_service.dart';
 import 'package:covidinfo/util/connectivity_helper.dart';
-import 'package:covidinfo/util/view_state.dart';
 import 'package:rxdart/rxdart.dart';
 
 class HomeBloc extends BlocBase {

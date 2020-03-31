@@ -1,6 +1,6 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
+import 'package:covidinfo/enums/view_state.dart';
 import 'package:covidinfo/service/geocoder_service.dart';
-import 'package:covidinfo/util/view_state.dart';
 import 'package:geocoder/geocoder.dart';
 import 'package:rxdart/rxdart.dart';
 

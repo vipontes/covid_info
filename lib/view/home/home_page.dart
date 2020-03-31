@@ -1,11 +1,11 @@
 import 'package:covidinfo/bloc/home_bloc.dart';
+import 'package:covidinfo/enums/view_state.dart';
 import 'package:covidinfo/model/worldometer_model.dart';
 import 'package:covidinfo/res/app_colors.dart';
 import 'package:covidinfo/res/app_textstyles.dart';
 import 'package:covidinfo/routes/routes.dart';
 import 'package:covidinfo/util/date_helper.dart';
 import 'package:covidinfo/util/localizations.dart';
-import 'package:covidinfo/util/view_state.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -154,7 +154,7 @@ class _HomePageState extends State<HomePage> {
                         height: 200,
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 20.0),
+                        padding: const EdgeInsets.all(20.0),
                         child: Text(
                           AppLocalizations.of(context).translate("internet_connection_error"),
                           style: AppTextStyles.titleBoldGray,
@@ -193,7 +193,7 @@ class _HomePageState extends State<HomePage> {
                         _searchBar(),
                         data.length == 0
                             ? Padding(
-                                padding: const EdgeInsets.only(top: 20.0),
+                                padding: const EdgeInsets.all(20.0),
                                 child: Text(
                                   AppLocalizations.of(context).translate("no_data"),
                                   style: AppTextStyles.titleBoldGray,

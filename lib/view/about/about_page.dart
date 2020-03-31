@@ -24,114 +24,137 @@ class _AboutPageState extends State<AboutPage> {
         title: Text(AppLocalizations.of(context).translate('about')),
       ),
       body: SafeArea(
-        child: Column(
+        child: Stack(
           children: <Widget>[
-            Row(
+            Column(
               children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Image.asset(
-                    "assets/img/coronavirus_9.png",
-                    fit: BoxFit.fill,
-                    width: 64,
-                    height: 64,
-                  ),
-                ),
-                Text(
-                  AppLocalizations.of(context).translate("app_title"),
-                  style: AppTextStyles.bigTextPrimary,
-                )
-              ],
-            ),
-            Row(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width - 16.0,
-                    child: Text(
-                      AppLocalizations.of(context).translate("about_line1"),
-                      style: AppTextStyles.titleBoldGray,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width - 16.0,
-                    child: Text(
-                      AppLocalizations.of(context).translate("about_line2"),
-                      style: AppTextStyles.titleBoldGray,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width - 16.0,
-                    child: Text(
-                      AppLocalizations.of(context).translate("about_numbers"),
-                      style: AppTextStyles.titleBoldGray,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width - 16.0,
-                    child: GestureDetector(
-                      child: Text(
-                        "https://www.worldometers.info/coronavirus/",
-                        style: AppTextStyles.link,
+                Row(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Image.asset(
+                        "assets/img/coronavirus_9.png",
+                        fit: BoxFit.fill,
+                        width: 64,
+                        height: 64,
                       ),
-                      onTap: () => LaunchUrlHelper.launchURL("https://www.worldometers.info/coronavirus/"),
                     ),
-                  ),
+                    Text(
+                      AppLocalizations.of(context).translate("app_title"),
+                      style: AppTextStyles.bigTextPrimary,
+                    )
+                  ],
                 ),
-              ],
-            ),
-            Row(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width - 16.0,
-                    child: Text(
-                      AppLocalizations.of(context).translate("about_news"),
-                      style: AppTextStyles.titleBoldGray,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width - 16.0,
-                    child: GestureDetector(
-                      child: Text(
-                        "https://newsapi.org/",
-                        style: AppTextStyles.link,
+                Row(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width - 16.0,
+                        child: Text(
+                          AppLocalizations.of(context).translate("about_line1"),
+                          style: AppTextStyles.titleBoldGray,
+                        ),
                       ),
-                      onTap: () => LaunchUrlHelper.launchURL("https://newsapi.org/"),
                     ),
-                  ),
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width - 16.0,
+                        child: Text(
+                          AppLocalizations.of(context).translate("about_line2"),
+                          style: AppTextStyles.titleBoldGray,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width - 16.0,
+                        child: Text(
+                          AppLocalizations.of(context).translate("about_numbers"),
+                          style: AppTextStyles.titleBoldGray,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width - 16.0,
+                        child: GestureDetector(
+                          child: Text(
+                            "https://www.worldometers.info/coronavirus/",
+                            style: AppTextStyles.link,
+                          ),
+                          onTap: () => LaunchUrlHelper.launchURL("https://www.worldometers.info/coronavirus/"),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width - 16.0,
+                        child: Text(
+                          AppLocalizations.of(context).translate("about_news"),
+                          style: AppTextStyles.titleBoldGray,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width - 16.0,
+                        child: GestureDetector(
+                          child: Text(
+                            "https://newsapi.org/",
+                            style: AppTextStyles.link,
+                          ),
+                          onTap: () => LaunchUrlHelper.launchURL("https://newsapi.org/"),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: GestureDetector(
+                onTap: () => LaunchUrlHelper.launchURL("http://easify.net.br/"),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      AppLocalizations.of(context).translate("poweredBy").toUpperCase(),
+                      style: AppTextStyles.detailTextGray,
+                    ),
+                    Image.asset(
+                      "assets/img/easify_logo.png",
+                      width: 120,
+                    ),
+                  ],
+                ),
+              ),
             ),
           ],
         ),

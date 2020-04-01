@@ -146,7 +146,7 @@ class _AboutPageState extends State<AboutPage> {
                   children: <Widget>[
                     Text(
                       AppLocalizations.of(context).translate("poweredBy").toUpperCase(),
-                      style: AppTextStyles.detailTextGray,
+                      style: AppTextStyles.descriptionRegularGray,
                     ),
                     Image.asset(
                       "assets/img/easify_logo.png",

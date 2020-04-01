@@ -13,8 +13,10 @@ class HomeBloc extends BlocBase {
   Stream<ViewState> get viewState => _viewStateController.stream;
 
   final _worldometerDataController = BehaviorSubject<List<Worldometer>>();
-  Stream<List<Worldometer>> get data => _worldometerDataController.stream;
-  Function(List<Worldometer>) get onDataChanged => _worldometerDataController.add;
+  Stream<List<Worldometer>> get countriesData => _worldometerDataController.stream;
+
+  final _worldometerFullDataController = BehaviorSubject<List<Worldometer>>();
+  Stream<List<Worldometer>> get countriesFullData => _worldometerFullDataController.stream;
 
   void getInfo(String selectedDate) async {
     var connectivity = await ConnectivityHelper.checkConnectivity();
@@ -23,11 +25,10 @@ class HomeBloc extends BlocBase {
         var decodedResponse = res.fold((error) => error, (val) => val);
         if (decodedResponse is List<Worldometer>) {
           _worldometerDataController.sink.add(decodedResponse);
+          _worldometerFullDataController.sink.add(decodedResponse);
+          _refreshCountries(decodedResponse);
           _viewStateController.add(ViewState.loaded);
           _viewStateController.add(ViewState.idle);
-
-          _countries.addAll(decodedResponse);
-          _countriesForDisplay = _countries;
         }
       }).catchError((error) {
         _viewStateController.add(ViewState.loadingError);
@@ -44,11 +45,10 @@ class HomeBloc extends BlocBase {
         var decodedResponse = res.fold((error) => error, (val) => val);
         if (decodedResponse is List<Worldometer>) {
           _worldometerDataController.sink.add(decodedResponse);
+          _worldometerFullDataController.sink.add(decodedResponse);
+          _refreshCountries(decodedResponse);
           _viewStateController.add(ViewState.loaded);
           _viewStateController.add(ViewState.idle);
-
-          _countries.addAll(decodedResponse);
-          _countriesForDisplay = _countries;
         }
       }).catchError((error) {
         _viewStateController.add(ViewState.loadingError);
@@ -56,6 +56,13 @@ class HomeBloc extends BlocBase {
     } else {
       _viewStateController.add(ViewState.loadingError);
     }
+  }
+
+  void _refreshCountries(List<Worldometer> list) {
+    _countries.clear();
+    _countriesForDisplay.clear();
+    _countries.addAll(list);
+    _countriesForDisplay.addAll(list);
   }
 
   void onSearchChange(String value) {
@@ -71,6 +78,7 @@ class HomeBloc extends BlocBase {
   void dispose() {
     _viewStateController.close();
     _worldometerDataController.close();
+    _worldometerFullDataController.close();
     super.dispose();
   }
 }

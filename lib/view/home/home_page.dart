@@ -21,6 +21,8 @@ class _HomePageState extends State<HomePage> {
   HomeBloc _bloc = HomeBloc();
   DateTime _date = DateTime.now();
 
+  var _searchController = TextEditingController();
+
   @override
   void initState() {
     var selectedDate = DateHelper.currentDateAsString();
@@ -43,6 +45,11 @@ class _HomePageState extends State<HomePage> {
       }
     });
 
+    _bloc.countriesFullData.listen((data) {
+      _searchController.text = "";
+      setState(() {});
+    });
+
     super.initState();
   }
 
@@ -54,6 +61,7 @@ class _HomePageState extends State<HomePage> {
         child: FocusScope(
           node: FocusScopeNode(),
           child: TextField(
+            controller: _searchController,
             decoration: InputDecoration(
               hintText: AppLocalizations.of(context).translate('search'),
               enabledBorder: UnderlineInputBorder(
@@ -166,7 +174,7 @@ class _HomePageState extends State<HomePage> {
               );
             } else {
               return StreamBuilder<List<Worldometer>>(
-                stream: _bloc.data,
+                stream: _bloc.countriesData,
                 builder: (context, snapshot) {
                   var data = snapshot.data;
                   if (data == null) {

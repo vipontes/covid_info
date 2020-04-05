@@ -1,17 +1,22 @@
-# covidinfo
+# CovidInfo
 
-Information about COVID19
+![](extras/cover_image.png)
 
-## Getting Started
+CovidInfo é um projeto que usei para estudo de algumas funcionalidades do Flutter.
 
-This project is a starting point for a Flutter application.
+Seu propósito é apresentar informações numéricas e notícias recentes sobre o Covid19.
 
-A few resources to get you started if this is your first Flutter project:
+Ele implementa o uso de plugins como [Dio](https://pub.dev/packages/dio) para chamadas http e [Moor](https://pub.dev/packages/moor) para acesso ao SQLite.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+Também tentei separar a estrutura do projeto em camadas, usando BloC. Além disso, o app foi implementado para funcionar em multi-idiomas, estando atualmente configurado para inglês e português Brasil.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-# covid_info
+## Fontes
+
+As informações apresentadas no app são extraídas das seguintes fontes:
+
+- [Worldometer](https://www.worldometers.info/coronavirus/)
+- [NewsAPI](https://newsapi.org/)
+
+## Licença de uso
+
+[MIT](https://choosealicense.com/licenses/mit/)

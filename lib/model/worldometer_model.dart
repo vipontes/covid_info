@@ -11,6 +11,9 @@ class Worldometer {
   int seriousCases;
   double casesPerMillion;
   double deathsPerMillion;
+  int totalTests;
+  double testsPerMillion;
+  int population;
 
   Worldometer(
       {this.worldometersId,
@@ -24,7 +27,10 @@ class Worldometer {
       this.activeCases,
       this.seriousCases,
       this.casesPerMillion,
-      this.deathsPerMillion});
+      this.deathsPerMillion,
+      this.totalTests,
+      this.testsPerMillion,
+      this.population});
 
   Worldometer.fromJson(Map<String, dynamic> json) {
     worldometersId = int.parse(json['worldometers_id']);
@@ -39,6 +45,9 @@ class Worldometer {
     seriousCases = int.parse(json['serious_cases']);
     casesPerMillion = double.parse(json['cases_per_million']);
     deathsPerMillion = double.parse(json['deaths_per_million']);
+    totalTests = int.parse(json['total_tests']);
+    testsPerMillion = double.parse(json['tests_per_million']);
+    population = int.parse(json['population']);
   }
 
   Map<String, dynamic> toJson() {
@@ -55,6 +64,9 @@ class Worldometer {
     data['serious_cases'] = this.seriousCases;
     data['cases_per_million'] = this.casesPerMillion;
     data['deaths_per_million'] = this.deathsPerMillion;
+    data['total_tests'] = this.totalTests;
+    data['tests_per_million'] = this.testsPerMillion;
+    data['population'] = this.population;
     return data;
   }
 
@@ -74,7 +86,10 @@ class Worldometer {
           activeCases: int.parse(item["active_cases"]),
           seriousCases: int.parse(item["serious_cases"]),
           casesPerMillion: double.parse(item["cases_per_million"]),
-          deathsPerMillion: double.parse(item["deaths_per_million"]));
+          deathsPerMillion: double.parse(item["deaths_per_million"]),
+          totalTests: int.parse(item["total_tests"]),
+          testsPerMillion: double.parse(item["tests_per_million"]),
+          population: int.parse(item["population"]));
 
       data.add(cidade);
     }

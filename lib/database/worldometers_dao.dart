@@ -1,4 +1,3 @@
-import 'package:covidinfo/database/country_coordinates_dao.dart';
 import 'package:moor_flutter/moor_flutter.dart';
 
 import 'moor_database.dart';
@@ -18,6 +17,9 @@ class WorldometersLocals extends Table {
   IntColumn get serious_cases => integer()();
   RealColumn get cases_per_million => real()();
   RealColumn get deaths_per_million => real()();
+  IntColumn get total_tests => integer()();
+  RealColumn get tests_per_million => real()();
+  IntColumn get population => integer()();
 
   @override
   Set<Column> get primaryKey => {worldometers_id};

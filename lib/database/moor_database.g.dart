@@ -21,6 +21,9 @@ class WorldometersLocal extends DataClass
   final int serious_cases;
   final double cases_per_million;
   final double deaths_per_million;
+  final int total_tests;
+  final double tests_per_million;
+  final int population;
   WorldometersLocal(
       {@required this.worldometers_id,
       @required this.measurement_date,
@@ -33,7 +36,10 @@ class WorldometersLocal extends DataClass
       @required this.active_cases,
       @required this.serious_cases,
       @required this.cases_per_million,
-      @required this.deaths_per_million});
+      @required this.deaths_per_million,
+      @required this.total_tests,
+      @required this.tests_per_million,
+      @required this.population});
   factory WorldometersLocal.fromData(
       Map<String, dynamic> data, GeneratedDatabase db,
       {String prefix}) {
@@ -66,6 +72,12 @@ class WorldometersLocal extends DataClass
           .mapFromDatabaseResponse(data['${effectivePrefix}cases_per_million']),
       deaths_per_million: doubleType.mapFromDatabaseResponse(
           data['${effectivePrefix}deaths_per_million']),
+      total_tests: intType
+          .mapFromDatabaseResponse(data['${effectivePrefix}total_tests']),
+      tests_per_million: doubleType
+          .mapFromDatabaseResponse(data['${effectivePrefix}tests_per_million']),
+      population:
+          intType.mapFromDatabaseResponse(data['${effectivePrefix}population']),
     );
   }
   factory WorldometersLocal.fromJson(Map<String, dynamic> json,
@@ -85,6 +97,9 @@ class WorldometersLocal extends DataClass
       cases_per_million: serializer.fromJson<double>(json['cases_per_million']),
       deaths_per_million:
           serializer.fromJson<double>(json['deaths_per_million']),
+      total_tests: serializer.fromJson<int>(json['total_tests']),
+      tests_per_million: serializer.fromJson<double>(json['tests_per_million']),
+      population: serializer.fromJson<int>(json['population']),
     );
   }
   @override
@@ -103,6 +118,9 @@ class WorldometersLocal extends DataClass
       'serious_cases': serializer.toJson<int>(serious_cases),
       'cases_per_million': serializer.toJson<double>(cases_per_million),
       'deaths_per_million': serializer.toJson<double>(deaths_per_million),
+      'total_tests': serializer.toJson<int>(total_tests),
+      'tests_per_million': serializer.toJson<double>(tests_per_million),
+      'population': serializer.toJson<int>(population),
     };
   }
 
@@ -145,6 +163,15 @@ class WorldometersLocal extends DataClass
       deaths_per_million: deaths_per_million == null && nullToAbsent
           ? const Value.absent()
           : Value(deaths_per_million),
+      total_tests: total_tests == null && nullToAbsent
+          ? const Value.absent()
+          : Value(total_tests),
+      tests_per_million: tests_per_million == null && nullToAbsent
+          ? const Value.absent()
+          : Value(tests_per_million),
+      population: population == null && nullToAbsent
+          ? const Value.absent()
+          : Value(population),
     );
   }
 
@@ -160,7 +187,10 @@ class WorldometersLocal extends DataClass
           int active_cases,
           int serious_cases,
           double cases_per_million,
-          double deaths_per_million}) =>
+          double deaths_per_million,
+          int total_tests,
+          double tests_per_million,
+          int population}) =>
       WorldometersLocal(
         worldometers_id: worldometers_id ?? this.worldometers_id,
         measurement_date: measurement_date ?? this.measurement_date,
@@ -174,6 +204,9 @@ class WorldometersLocal extends DataClass
         serious_cases: serious_cases ?? this.serious_cases,
         cases_per_million: cases_per_million ?? this.cases_per_million,
         deaths_per_million: deaths_per_million ?? this.deaths_per_million,
+        total_tests: total_tests ?? this.total_tests,
+        tests_per_million: tests_per_million ?? this.tests_per_million,
+        population: population ?? this.population,
       );
   @override
   String toString() {
@@ -189,7 +222,10 @@ class WorldometersLocal extends DataClass
           ..write('active_cases: $active_cases, ')
           ..write('serious_cases: $serious_cases, ')
           ..write('cases_per_million: $cases_per_million, ')
-          ..write('deaths_per_million: $deaths_per_million')
+          ..write('deaths_per_million: $deaths_per_million, ')
+          ..write('total_tests: $total_tests, ')
+          ..write('tests_per_million: $tests_per_million, ')
+          ..write('population: $population')
           ..write(')'))
         .toString();
   }
@@ -217,8 +253,15 @@ class WorldometersLocal extends DataClass
                                           serious_cases.hashCode,
                                           $mrjc(
                                               cases_per_million.hashCode,
-                                              deaths_per_million
-                                                  .hashCode))))))))))));
+                                              $mrjc(
+                                                  deaths_per_million.hashCode,
+                                                  $mrjc(
+                                                      total_tests.hashCode,
+                                                      $mrjc(
+                                                          tests_per_million
+                                                              .hashCode,
+                                                          population
+                                                              .hashCode)))))))))))))));
   @override
   bool operator ==(dynamic other) =>
       identical(this, other) ||
@@ -234,7 +277,10 @@ class WorldometersLocal extends DataClass
           other.active_cases == this.active_cases &&
           other.serious_cases == this.serious_cases &&
           other.cases_per_million == this.cases_per_million &&
-          other.deaths_per_million == this.deaths_per_million);
+          other.deaths_per_million == this.deaths_per_million &&
+          other.total_tests == this.total_tests &&
+          other.tests_per_million == this.tests_per_million &&
+          other.population == this.population);
 }
 
 class WorldometersLocalsCompanion extends UpdateCompanion<WorldometersLocal> {
@@ -250,6 +296,9 @@ class WorldometersLocalsCompanion extends UpdateCompanion<WorldometersLocal> {
   final Value<int> serious_cases;
   final Value<double> cases_per_million;
   final Value<double> deaths_per_million;
+  final Value<int> total_tests;
+  final Value<double> tests_per_million;
+  final Value<int> population;
   const WorldometersLocalsCompanion({
     this.worldometers_id = const Value.absent(),
     this.measurement_date = const Value.absent(),
@@ -263,6 +312,9 @@ class WorldometersLocalsCompanion extends UpdateCompanion<WorldometersLocal> {
     this.serious_cases = const Value.absent(),
     this.cases_per_million = const Value.absent(),
     this.deaths_per_million = const Value.absent(),
+    this.total_tests = const Value.absent(),
+    this.tests_per_million = const Value.absent(),
+    this.population = const Value.absent(),
   });
   WorldometersLocalsCompanion.insert({
     @required int worldometers_id,
@@ -277,6 +329,9 @@ class WorldometersLocalsCompanion extends UpdateCompanion<WorldometersLocal> {
     @required int serious_cases,
     @required double cases_per_million,
     @required double deaths_per_million,
+    @required int total_tests,
+    @required double tests_per_million,
+    @required int population,
   })  : worldometers_id = Value(worldometers_id),
         measurement_date = Value(measurement_date),
         country = Value(country),
@@ -288,7 +343,10 @@ class WorldometersLocalsCompanion extends UpdateCompanion<WorldometersLocal> {
         active_cases = Value(active_cases),
         serious_cases = Value(serious_cases),
         cases_per_million = Value(cases_per_million),
-        deaths_per_million = Value(deaths_per_million);
+        deaths_per_million = Value(deaths_per_million),
+        total_tests = Value(total_tests),
+        tests_per_million = Value(tests_per_million),
+        population = Value(population);
   WorldometersLocalsCompanion copyWith(
       {Value<int> worldometers_id,
       Value<String> measurement_date,
@@ -301,7 +359,10 @@ class WorldometersLocalsCompanion extends UpdateCompanion<WorldometersLocal> {
       Value<int> active_cases,
       Value<int> serious_cases,
       Value<double> cases_per_million,
-      Value<double> deaths_per_million}) {
+      Value<double> deaths_per_million,
+      Value<int> total_tests,
+      Value<double> tests_per_million,
+      Value<int> population}) {
     return WorldometersLocalsCompanion(
       worldometers_id: worldometers_id ?? this.worldometers_id,
       measurement_date: measurement_date ?? this.measurement_date,
@@ -315,6 +376,9 @@ class WorldometersLocalsCompanion extends UpdateCompanion<WorldometersLocal> {
       serious_cases: serious_cases ?? this.serious_cases,
       cases_per_million: cases_per_million ?? this.cases_per_million,
       deaths_per_million: deaths_per_million ?? this.deaths_per_million,
+      total_tests: total_tests ?? this.total_tests,
+      tests_per_million: tests_per_million ?? this.tests_per_million,
+      population: population ?? this.population,
     );
   }
 }
@@ -485,6 +549,45 @@ class $WorldometersLocalsTable extends WorldometersLocals
     );
   }
 
+  final VerificationMeta _total_testsMeta =
+      const VerificationMeta('total_tests');
+  GeneratedIntColumn _total_tests;
+  @override
+  GeneratedIntColumn get total_tests => _total_tests ??= _constructTotalTests();
+  GeneratedIntColumn _constructTotalTests() {
+    return GeneratedIntColumn(
+      'total_tests',
+      $tableName,
+      false,
+    );
+  }
+
+  final VerificationMeta _tests_per_millionMeta =
+      const VerificationMeta('tests_per_million');
+  GeneratedRealColumn _tests_per_million;
+  @override
+  GeneratedRealColumn get tests_per_million =>
+      _tests_per_million ??= _constructTestsPerMillion();
+  GeneratedRealColumn _constructTestsPerMillion() {
+    return GeneratedRealColumn(
+      'tests_per_million',
+      $tableName,
+      false,
+    );
+  }
+
+  final VerificationMeta _populationMeta = const VerificationMeta('population');
+  GeneratedIntColumn _population;
+  @override
+  GeneratedIntColumn get population => _population ??= _constructPopulation();
+  GeneratedIntColumn _constructPopulation() {
+    return GeneratedIntColumn(
+      'population',
+      $tableName,
+      false,
+    );
+  }
+
   @override
   List<GeneratedColumn> get $columns => [
         worldometers_id,
@@ -498,7 +601,10 @@ class $WorldometersLocalsTable extends WorldometersLocals
         active_cases,
         serious_cases,
         cases_per_million,
-        deaths_per_million
+        deaths_per_million,
+        total_tests,
+        tests_per_million,
+        population
       ];
   @override
   $WorldometersLocalsTable get asDslTable => this;
@@ -598,6 +704,26 @@ class $WorldometersLocalsTable extends WorldometersLocals
     } else if (isInserting) {
       context.missing(_deaths_per_millionMeta);
     }
+    if (d.total_tests.present) {
+      context.handle(_total_testsMeta,
+          total_tests.isAcceptableValue(d.total_tests.value, _total_testsMeta));
+    } else if (isInserting) {
+      context.missing(_total_testsMeta);
+    }
+    if (d.tests_per_million.present) {
+      context.handle(
+          _tests_per_millionMeta,
+          tests_per_million.isAcceptableValue(
+              d.tests_per_million.value, _tests_per_millionMeta));
+    } else if (isInserting) {
+      context.missing(_tests_per_millionMeta);
+    }
+    if (d.population.present) {
+      context.handle(_populationMeta,
+          population.isAcceptableValue(d.population.value, _populationMeta));
+    } else if (isInserting) {
+      context.missing(_populationMeta);
+    }
     return context;
   }
 
@@ -650,6 +776,16 @@ class $WorldometersLocalsTable extends WorldometersLocals
     if (d.deaths_per_million.present) {
       map['deaths_per_million'] =
           Variable<double, RealType>(d.deaths_per_million.value);
+    }
+    if (d.total_tests.present) {
+      map['total_tests'] = Variable<int, IntType>(d.total_tests.value);
+    }
+    if (d.tests_per_million.present) {
+      map['tests_per_million'] =
+          Variable<double, RealType>(d.tests_per_million.value);
+    }
+    if (d.population.present) {
+      map['population'] = Variable<int, IntType>(d.population.value);
     }
     return map;
   }

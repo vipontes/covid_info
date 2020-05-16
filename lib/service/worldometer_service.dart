@@ -73,7 +73,10 @@ class WorldometerService implements IWorldometerService {
                 active_cases: item.activeCases,
                 serious_cases: item.seriousCases,
                 cases_per_million: item.casesPerMillion,
-                deaths_per_million: item.deathsPerMillion);
+                deaths_per_million: item.deathsPerMillion,
+                total_tests: item.totalTests,
+                tests_per_million: item.testsPerMillion,
+                population: item.population);
 
             await database.worldometersLocalDao.insertItem(itemData);
           });
@@ -102,7 +105,10 @@ class WorldometerService implements IWorldometerService {
             activeCases: item.active_cases,
             seriousCases: item.serious_cases,
             casesPerMillion: item.cases_per_million,
-            deathsPerMillion: item.deaths_per_million);
+            deathsPerMillion: item.deaths_per_million,
+            totalTests: item.total_tests,
+            testsPerMillion: item.tests_per_million,
+            population: item.population);
 
         data.add(element);
       });

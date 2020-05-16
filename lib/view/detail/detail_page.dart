@@ -117,6 +117,22 @@ class _DetailPageState extends State<DetailPage> {
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: <Widget>[
                                     Text(
+                                      AppLocalizations.of(context).translate('population'),
+                                      style: AppTextStyles.detailTextGray,
+                                    ),
+                                    Text(
+                                      "${widget.countryData.population}",
+                                      style: AppTextStyles.detailTextGray,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 10),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    Text(
                                       AppLocalizations.of(context).translate('total'),
                                       style: AppTextStyles.detailTextGray,
                                     ),
@@ -250,6 +266,38 @@ class _DetailPageState extends State<DetailPage> {
                                     ),
                                     Text(
                                       "${widget.countryData.deathsPerMillion}",
+                                      style: AppTextStyles.detailTextGray,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 10),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    Text(
+                                      AppLocalizations.of(context).translate('totalTests'),
+                                      style: AppTextStyles.detailTextGray,
+                                    ),
+                                    Text(
+                                      "${widget.countryData.totalTests}",
+                                      style: AppTextStyles.detailTextGray,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 10),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    Text(
+                                      AppLocalizations.of(context).translate('testsPerMillion'),
+                                      style: AppTextStyles.detailTextGray,
+                                    ),
+                                    Text(
+                                      "${widget.countryData.testsPerMillion}",
                                       style: AppTextStyles.detailTextGray,
                                     ),
                                   ],
